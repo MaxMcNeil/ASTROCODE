@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Astrocode — Consultations & Guidances</title>
+<meta name="description" content="Astrocode : dons, questions flash, guidances et thèmes astraux. Consultations en direct ou par écrit/audio sous 48h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #1A0B2E;
+    --bg-panel: #241542;
+    --bg-panel-soft: #2A1A4D;
+    --gold: #D4AF37;
+    --gold-soft: rgba(212,175,55,0.35);
+    --lavande: #E8E3F5;
+    --lavande-dim: #B8AFD1;
+    --dark-text: #1A0B2E;
+    --radius: 4px;
+    --maxw: 760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1px 1px at 10% 20%, rgba(212,175,55,0.5) 0, transparent 100%),
+      radial-gradient(1px 1px at 80% 10%, rgba(212,175,55,0.4) 0, transparent 100%),
+      radial-gradient(1px 1px at 60% 70%, rgba(232,227,245,0.3) 0, transparent 100%),
+      radial-gradient(1px 1px at 30% 85%, rgba(212,175,55,0.35) 0, transparent 100%),
+      radial-gradient(1px 1px at 92% 60%, rgba(232,227,245,0.25) 0, transparent 100%),
+      var(--bg);
+    color: var(--lavande);
+    font-family:'Montserrat', sans-serif;
+    font-weight:400;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Cinzel', serif;
+    font-weight:600;
+    color: var(--gold);
+    margin:0 0 0.6em 0;
+    line-height:1.3;
+  }
+  h1{font-size:clamp(1.9rem, 5vw, 2.8rem);}
+  h2{font-size:clamp(1.4rem, 3.4vw, 1.9rem);}
+  h3{font-size:1.15rem; margin-bottom:0.4em;}
+  p{color:var(--lavande); max-width:66ch;}
+  a{color:var(--gold);}
+  .wrap{max-width: var(--maxw); margin:0 auto; padding: 0 22px;}
+
+  /* Header */
+  header{
+    position:sticky; top:0; z-index:50;
+    background: rgba(26,11,46,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--gold-soft);
+  }
+  .header-inner{
+    max-width: var(--maxw); margin:0 auto; padding: 14px 22px;
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+  }
+  .logo{
+    font-family:'Cinzel', serif; font-weight:700; letter-spacing:0.04em;
+    color:var(--gold); font-size:1.15rem; text-decoration:none; white-space:nowrap;
+  }
+  .logo span{color:var(--lavande);}
+  .cta-btn{
+    display:inline-block;
+    background: var(--gold);
+    color: var(--dark-text);
+    font-family:'Montserrat', sans-serif;
+    font-weight:600;
+    text-decoration:none;
+    padding: 10px 20px;
+    border-radius: var(--radius);
+    border:none;
+    cursor:pointer;
+    font-size:0.92rem;
+    white-space:nowrap;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .cta-btn:hover{ transform: translateY(-1px); box-shadow: 0 4px 16px rgba(212,175,55,0.35); }
+  .cta-btn:focus-visible, a:focus-visible, button:focus-visible, input:focus-visible{
+    outline: 2px solid var(--gold); outline-offset: 3px;
+  }
+
+  /* Hero */
+  .hero{ padding: 56px 0 40px; text-align:center; }
+  .hero-star{ margin: 0 auto 18px; display:block; }
+  .hero p.lead{ margin: 0 auto 28px; color: var(--lavande-dim); font-size:1.02rem; }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+  .btn-outline{
+    display:inline-block; padding:10px 20px; border-radius:var(--radius);
+    border:1px solid var(--gold-soft); color:var(--gold); text-decoration:none;
+    font-weight:600; font-size:0.92rem;
+  }
+
+  /* Sections */
+  section{ padding: 46px 0; border-top:1px solid rgba(212,175,55,0.12); }
+  section .kicker{
+    color: var(--lavande-dim); font-size:0.85rem; margin: 0 0 6px 0; font-style:italic;
+  }
+  .section-head{ margin-bottom:26px; }
+
+  /* Cards */
+  .grid{ display:grid; gap:16px; }
+  .card{
+    background: var(--bg-panel);
+    border: 1px solid rgba(212,175,55,0.18);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+  .card.featured{
+    border-color: var(--gold);
+    box-shadow: 0 0 0 1px var(--gold-soft) inset;
+    position:relative;
+  }
+  .card.featured::before{
+    content:"Formule recommandée";
+    position:absolute; top:-11px; left:22px;
+    background:var(--gold); color:var(--dark-text);
+    font-family:'Montserrat',sans-serif; font-weight:600;
+    font-size:0.72rem; padding:3px 10px; border-radius:20px;
+  }
+  .card-top{ display:flex; justify-content:space-between; align-items:baseline; gap:12px; flex-wrap:wrap; }
+  .price{ font-family:'Cinzel', serif; color:var(--gold); font-size:1.15rem; white-space:nowrap; }
+  .card p{ margin: 8px 0 0; color: var(--lavande-dim); font-size:0.95rem; }
+  .card ul{ margin:10px 0 0; padding-left:1.1em; color:var(--lavande-dim); font-size:0.95rem; }
+  .card li{ margin-bottom:4px; }
+  .card .choose-btn{
+    margin-top:16px; display:inline-block; background:transparent;
+    border:1px solid var(--gold); color:var(--gold); padding:8px 16px;
+    border-radius:var(--radius); font-family:'Montserrat',sans-serif; font-weight:600;
+    font-size:0.85rem; cursor:pointer;
+  }
+  .card .choose-btn:hover{ background: var(--gold); color: var(--dark-text); }
+
+  /* Don section */
+  .don-box{
+    background: linear-gradient(160deg, var(--bg-panel-soft), var(--bg-panel));
+    border: 1px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 26px;
+    text-align:center;
+  }
+  .don-amounts{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin: 18px 0; }
+  .amount-chip{
+    background:transparent; border:1px solid var(--gold-soft); color:var(--lavande);
+    padding:9px 16px; border-radius:20px; cursor:pointer; font-family:'Montserrat',sans-serif;
+    font-size:0.9rem;
+  }
+  .amount-chip.active, .amount-chip:hover{ background:var(--gold); color:var(--dark-text); border-color:var(--gold); }
+  .don-custom{ display:flex; gap:8px; justify-content:center; flex-wrap:wrap; margin-top:6px; }
+  input[type=number], input[type=text], input[type=email]{
+    background: var(--bg); border:1px solid rgba(232,227,245,0.25); color:var(--lavande);
+    padding:11px 14px; border-radius:var(--radius); font-family:'Montserrat',sans-serif;
+    font-size:0.95rem; width:180px; max-width:60vw;
+  }
+
+  /* Products list */
+  .product-item{
+    display:flex; justify-content:space-between; gap:14px; align-items:baseline;
+    padding:14px 0; border-bottom:1px solid rgba(212,175,55,0.12);
+  }
+  .product-item:last-child{ border-bottom:none; }
+  .product-item .name{ color:var(--lavande); font-weight:600; }
+  .product-item .desc{ color:var(--lavande-dim); font-size:0.9rem; margin-top:3px; max-width:52ch; }
+  .product-item .price{ font-size:1rem; white-space:nowrap; }
+
+  /* Payment */
+  .pay-box{
+    background: var(--bg-panel); border:1px solid var(--gold-soft); border-radius:var(--radius);
+    padding: 24px;
+  }
+  .pay-row{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    padding: 10px 0; border-bottom:1px dashed rgba(232,227,245,0.15); flex-wrap:wrap;
+  }
+  .pay-row:last-of-type{ border-bottom:none; }
+  .pay-row .label{ color:var(--lavande-dim); font-size:0.85rem; }
+  .pay-row .value{ font-family:'Montserrat',sans-serif; font-weight:600; letter-spacing:0.02em; }
+  .copy-btn{
+    background:transparent; border:1px solid var(--gold-soft); color:var(--gold);
+    padding:6px 12px; border-radius:var(--radius); cursor:pointer; font-size:0.8rem;
+    font-family:'Montserrat',sans-serif;
+  }
+  .copy-btn:hover{ border-color:var(--gold); }
+  .recap{
+    margin-top:18px; padding:14px 16px; border-radius:var(--radius);
+    background: rgba(212,175,55,0.08); border:1px solid var(--gold-soft);
+    font-size:0.9rem; color:var(--lavande); display:none;
+  }
+  .recap.show{ display:block; }
+  .note{ font-size:0.82rem; color:var(--lavande-dim); margin-top:16px; }
+
+  footer{
+    padding: 34px 0 46px; text-align:center; border-top:1px solid rgba(212,175,55,0.15);
+  }
+  footer p{ margin:0 auto; color:var(--lavande-dim); font-size:0.8rem; max-width:60ch; }
+  .socials{ margin-top:14px; display:flex; gap:16px; justify-content:center; }
+  .socials a{ color:var(--lavande-dim); text-decoration:none; font-size:0.85rem; border-bottom:1px solid transparent; }
+  .socials a:hover{ color:var(--gold); border-color:var(--gold); }
+
+  @media (min-width: 640px){
+    .grid.cols-2{ grid-template-columns: 1fr 1fr; }
+    .grid.cols-3{ grid-template-columns: 1fr 1fr 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .cta-btn{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="#top" class="logo">ASTRO<span>CODE</span></a>
+    <a href="#don" class="cta-btn">Faire un don</a>
+  </div>
+</header>
+
+<div id="top" class="wrap hero">
+  <svg class="hero-star" width="46" height="46" viewBox="0 0 46 46" fill="none" aria-hidden="true">
+    <path d="M23 2 L26 20 L44 23 L26 26 L23 44 L20 26 L2 23 L20 20 Z" fill="#D4AF37"/>
+  </svg>
+  <h1>Astrocode</h1>
+  <p class="lead">Tarot, astrologie et numérologie — consultations en direct pendant mes lives, ou en écrit / audio sous 48h.</p>
+  <div class="hero-actions">
+    <a href="#don" class="cta-btn">Soutenir le live</a>
+    <a href="#consultations" class="btn-outline">Voir les consultations</a>
+  </div>
+</div>
+
+<section id="don">
+  <div class="wrap">
+    <p class="kicker">Option prioritaire</p>
+    <div class="don-box">
+      <h2>Don sur mon Live</h2>
+      <p>Montant libre, pour soutenir la chaîne en direct.</p>
+      <div class="don-amounts" role="group" aria-label="Montants suggérés">
+        <button type="button" class="amount-chip" data-amount="5">5 €</button>
+        <button type="button" class="amount-chip" data-amount="10">10 €</button>
+        <button type="button" class="amount-chip" data-amount="20">20 €</button>
+        <button type="button" class="amount-chip" data-amount="50">50 €</button>
+      </div>
+      <div class="don-custom">
+        <input type="number" id="customAmount" min="1" step="1" placeholder="Autre montant (€)">
+        <button type="button" class="cta-btn" id="donValider">Valider le montant</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="questions">
+  <div class="wrap">
+    <p class="kicker">Questions rapides & éclairages</p>
+    <div class="section-head"><h2>Une réponse ciblée, vite</h2></div>
+    <div class="grid cols-2">
+      <div class="card">
+        <div class="card-top"><h3>Question Flash</h3><span class="price">20 €</span></div>
+        <p>Par mail ou audio. Réponse ciblée sur un sujet précis : amour, travail, choix.</p>
+        <ul><li>Restitution écrite ou vocale sous 48h</li></ul>
+        <button type="button" class="choose-btn" data-service="Question Flash" data-price="20">Choisir</button>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Consultation Express</h3><span class="price">35 € / 15 min</span></div>
+        <p>Échange en direct sur le live du réseau social d'où vous venez (TikTok, YouTube, Instagram), ou en privé.</p>
+        <ul><li>Focus sur une problématique urgente</li></ul>
+        <button type="button" class="choose-btn" data-service="Consultation Express" data-price="35">Choisir</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="consultations">
+  <div class="wrap">
+    <p class="kicker">Consultations & guidances complètes</p>
+    <div class="section-head"><h2>Pour aller en profondeur</h2></div>
+    <div class="grid cols-2">
+      <div class="card featured">
+        <div class="card-top"><h3>Guidance Essentielle</h3><span class="price">60 € / 30 min</span></div>
+        <p>Étude approfondie de 2 domaines au choix. Tirage de Tarot et Oracles, analyse des blocages et conseils.</p>
+        <ul><li>Live privé/public selon votre provenance, ou restitution écrite/vocale sous 48h</li></ul>
+        <button type="button" class="choose-btn" data-service="Guidance Essentielle" data-price="60">Choisir</button>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Grand Tirage de Vie</h3><span class="price">95 € / 1h</span></div>
+        <p>Analyse globale de votre situation et des tendances sur 12 mois.</p>
+        <ul><li>Session en direct sur le réseau d'origine, ou compte-rendu complet sous 48h</li></ul>
+        <button type="button" class="choose-btn" data-service="Grand Tirage de Vie" data-price="95">Choisir</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="etudes">
+  <div class="wrap">
+    <p class="kicker">Études analytiques & thèmes</p>
+    <div class="section-head"><h2>Astrologie & numérologie</h2></div>
+    <div class="grid cols-3">
+      <div class="card">
+        <div class="card-top"><h3>Étude Numérologique</h3><span class="price">75 €</span></div>
+        <p>Chemin de vie, défis et année personnelle.</p>
+        <ul><li>Restitution écrite ou vocale sous 48h</li></ul>
+        <button type="button" class="choose-btn" data-service="Étude Numérologique" data-price="75">Choisir</button>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Thème Astral</h3><span class="price">120 €</span></div>
+        <p>Étude astrologique complète de naissance et prévisions.</p>
+        <ul><li>Live sur votre réseau, ou dossier complet sous 48h</li></ul>
+        <button type="button" class="choose-btn" data-service="Thème Astral" data-price="120">Choisir</button>
+      </div>
+      <div class="card">
+        <div class="card-top"><h3>Synastrie / Couple</h3><span class="price">140 €</span></div>
+        <p>Analyse croisée de deux thèmes, astrologie ou numérologie.</p>
+        <ul><li>Live dédié, ou bilan écrit/vocal sous 48h</li></ul>
+        <button type="button" class="choose-btn" data-service="Synastrie / Couple" data-price="140">Choisir</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="boutique">
+  <div class="wrap">
+    <p class="kicker">Produits & outils conseillés</p>
+    <div class="section-head"><h2>Boutique</h2></div>
+    <div class="card">
+      <div class="product-item">
+        <div>
+          <div class="name">Talismans</div>
+          <div class="desc">Amulettes consacrées, talismans d'attraction ou de charge personnelle.</div>
+        </div>
+        <div class="price">Sur demande</div>
+      </div>
+      <div class="product-item">
+        <div>
+          <div class="name">Herbes & Produits Grimoire Anciens</div>
+          <div class="desc">Assemblages rares d'herbes et résines sacrées, préparations issues de la haute magie.</div>
+        </div>
+        <div class="price">400 €</div>
+      </div>
+      <div class="product-item">
+        <div>
+          <div class="name">Herbes & Produits de Protection</div>
+          <div class="desc">Herbes d'exorcisme doux, poudres de purification, sels rituels.</div>
+        </div>
+        <div class="price">250 €</div>
+      </div>
+      <div class="product-item">
+        <div>
+          <div class="name">Lithothérapie</div>
+          <div class="desc">Tourmaline noire & Labradorite (protection), Quartz rose (amour), Améthyste (intuition).</div>
+        </div>
+        <div class="price">Sur demande</div>
+      </div>
+      <div class="product-item">
+        <div>
+          <div class="name">Purification & Ambiance</div>
+          <div class="desc">Sauge blanche, Palo Santo, encens naturels, bougies d'intention.</div>
+        </div>
+        <div class="price">Sur demande</div>
+      </div>
+      <div class="product-item">
+        <div>
+          <div class="name">Accessoires</div>
+          <div class="desc">Pendules en pierre ou métal, disques de recharge en géométrie sacrée (Fleur de vie).</div>
+        </div>
+        <div class="price">Sur demande</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="modalites">
+  <div class="wrap">
+    <p class="kicker">Modalités de restitution</p>
+    <div class="section-head"><h2>Comment se déroule la consultation</h2></div>
+    <div class="card">
+      <p>Au choix : en direct durant le live du réseau social d'où vous venez, ou sous forme de compte-rendu écrit ou vocal, adressé sous 48h.</p>
+    </div>
+  </div>
+</section>
+
+<section id="paiement">
+  <div class="wrap">
+    <p class="kicker">Paiement</p>
+    <div class="section-head"><h2>Coordonnées de virement</h2></div>
+    <div class="pay-box">
+      <div id="recapBox" class="recap"></div>
+      <div class="pay-row">
+        <span class="label">Bénéficiaire</span>
+        <span class="value">Astrocode</span>
+      </div>
+      <div class="pay-row">
+        <span class="label">IBAN</span>
+        <span class="value" id="ibanValue">LT58 3250 0382 9407 6319</span>
+        <button type="button" class="copy-btn" data-copy="LT58325003829407 6319">Copier</button>
+      </div>
+      <div class="pay-row">
+        <span class="label">BIC</span>
+        <span class="value" id="bicValue">REVOLT21</span>
+        <button type="button" class="copy-btn" data-copy="REVOLT21">Copier</button>
+      </div>
+      <div class="pay-row">
+        <span class="label">Objet du virement</span>
+        <span class="value">Paiement voyance — [votre prénom]</span>
+      </div>
+      <p class="note">
+        Merci d'effectuer un virement SEPA immédiat (ou standard) et de préciser en objet « Paiement voyance ».
+        Une fois le virement envoyé, merci de m'écrire à
+        <a id="mailLink" href="mailto:imed.gn@gmail.com?subject=Paiement%20voyance">imed.gn@gmail.com</a>
+        (objet : « Paiement voyance ») en précisant la prestation choisie et le pseudo utilisé sur le live, afin que je puisse confirmer la réception rapidement.
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Les prestations proposées sur ce site relèvent du domaine du bien-être et de l'accompagnement personnel, à visée de divertissement. Elles ne se substituent pas à un avis médical, juridique ou financier professionnel.</p>
+    <div class="socials">
+      <a href="#" target="_blank" rel="noopener">TikTok</a>
+      <a href="#" target="_blank" rel="noopener">YouTube</a>
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Montant de don
+  const chips = document.querySelectorAll('.amount-chip');
+  const customAmount = document.getElementById('customAmount');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      customAmount.value = chip.dataset.amount;
+    });
+  });
+
+  const recapBox = document.getElementById('recapBox');
+  function showRecap(service, price){
+    recapBox.textContent = 'Votre choix : ' + service + (price ? ' — ' + price + ' €' : '') + '. Merci de suivre les coordonnées de virement ci-dessous, puis de confirmer par email.';
+    recapBox.classList.add('show');
+    document.getElementById('paiement').scrollIntoView({behavior:'smooth', block:'start'});
+    const mailLink = document.getElementById('mailLink');
+    const subject = encodeURIComponent('Paiement voyance');
+    const body = encodeURIComponent('Prestation choisie : ' + service + (price ? ' (' + price + ' €)' : '') + '\nPseudo sur le live : \nRéseau social : ');
+    mailLink.href = 'mailto:imed.gn@gmail.com?subject=' + subject + '&body=' + body;
+  }
+
+  document.getElementById('donValider').addEventListener('click', () => {
+    const amount = customAmount.value;
+    if(amount && Number(amount) > 0){
+      showRecap('Don sur le Live', amount);
+    } else {
+      customAmount.focus();
+    }
+  });
+
+  document.querySelectorAll('.choose-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      showRecap(btn.dataset.service, btn.dataset.price);
+    });
+  });
+
+  // Copier IBAN / BIC
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.dataset.copy;
+      try{
+        await navigator.clipboard.writeText(text);
+        const original = btn.textContent;
+        btn.textContent = 'Copié !';
+        setTimeout(() => { btn.textContent = original; }, 1600);
+      }catch(e){
+        alert(text);
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
